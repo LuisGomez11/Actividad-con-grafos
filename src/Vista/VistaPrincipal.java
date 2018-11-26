@@ -5,8 +5,12 @@ import Controladores.ControlMatriz;
 import Modelos.Enlace;
 import Modelos.Nodos;
 import Modelos.Pintar;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Cursor;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
+import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
 public class VistaPrincipal extends javax.swing.JFrame {
@@ -138,6 +142,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea2 = new javax.swing.JTextArea();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextArea3 = new javax.swing.JTextArea();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTextArea4 = new javax.swing.JTextArea();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        jTextArea5 = new javax.swing.JTextArea();
         cbUbi1 = new javax.swing.JComboBox<>();
         cbUbi2 = new javax.swing.JComboBox<>();
 
@@ -189,15 +203,71 @@ public class VistaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(1);
+        jTextArea1.setRows(1);
+        jTextArea1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jScrollPane1.setViewportView(jTextArea1);
+
+        jTextArea2.setEditable(false);
+        jTextArea2.setColumns(1);
+        jTextArea2.setRows(1);
+        jTextArea2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jScrollPane2.setViewportView(jTextArea2);
+
+        jTextArea3.setEditable(false);
+        jTextArea3.setColumns(1);
+        jTextArea3.setRows(1);
+        jTextArea3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jScrollPane3.setViewportView(jTextArea3);
+
+        jTextArea4.setEditable(false);
+        jTextArea4.setColumns(1);
+        jTextArea4.setRows(1);
+        jTextArea4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jScrollPane4.setViewportView(jTextArea4);
+
+        jTextArea5.setEditable(false);
+        jTextArea5.setColumns(1);
+        jTextArea5.setRows(1);
+        jTextArea5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jScrollPane5.setViewportView(jTextArea5);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(84, 84, 84)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1))
+                .addGap(86, 86, 86)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(jScrollPane5))
+                .addGap(71, 71, 71)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 463, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(43, 43, 43)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(68, 68, 68)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 172, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(67, 67, 67)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(33, 33, 33)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -232,7 +302,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -279,47 +349,54 @@ public class VistaPrincipal extends javax.swing.JFrame {
         String ubi1 = cbUbi1.getSelectedItem().toString();
         String ubi2 = cbUbi2.getSelectedItem().toString();
         
-        for (int i = 0; i < nodos.size(); i++) {
+        if(ubi1.equals(ubi2)){
             
-            if (nodos.get(i).getNombre().equals(ubi1)){
-                
-                p1 = i;
-                
-                pun1=true;
-                
-            }
+            JOptionPane.showMessageDialog(null, "No puede enlazar la misma ubicacion", "Error", 0);
             
-            if (nodos.get(i).getNombre().equals(ubi2)){
-                
-                p2 = i;
-                
-                pun2=true;
-                
-            }
-            
-        }
-        
-        if(pun1==true && pun2==true){
-            
-            double distancia = ingresarDistancia("Digite la distancia");
-            double velMax = ingresarVelocidadMax("Digite velocidad maxima");
-            String estado = ingresarEstado("Digite estado"+"\nDisponible o no disponible");
-            int tiempoPare = ingresarTiempoPare("Digite tiempo de pare");
-            
-            
-            enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi1, ubi2));
-
-            Pintar.pintarLinea(jPanel1.getGraphics(), nodos.get(p1).getX(), nodos.get(p1).getY(), nodos.get(p2).getX(), nodos.get(p2).getY(), distancia);
-            
-            cm.setmCoeficiente(p1, p2, distancia+"");
-            
-            cbUbi1.setSelectedIndex(0);
-            cbUbi2.setSelectedIndex(0);
-        
         } else {
-            
-            JOptionPane.showMessageDialog(null, "Error al enlazar", "Error", 0);
-            
+        
+            for (int i = 0; i < nodos.size(); i++) {
+
+                if (nodos.get(i).getNombre().equals(ubi1)){
+
+                    p1 = i;
+
+                    pun1=true;
+
+                }
+
+                if (nodos.get(i).getNombre().equals(ubi2)){
+
+                    p2 = i;
+
+                    pun2=true;
+
+                }
+
+            }
+        
+            if(pun1==true && pun2==true){
+
+                double distancia = ingresarDistancia("Digite la distancia");
+                double velMax = ingresarVelocidadMax("Digite velocidad maxima");
+                String estado = ingresarEstado("Digite estado"+"\nDisponible o no disponible");
+                int tiempoPare = ingresarTiempoPare("Digite tiempo de pare");
+
+                enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi1, ubi2));
+
+                Pintar.pintarLinea(jPanel1.getGraphics(), nodos.get(p1).getX(), nodos.get(p1).getY(), nodos.get(p2).getX(), nodos.get(p2).getY(), distancia);
+
+                cm.setmCoeficiente(p1, p2, distancia+"");
+
+                cbUbi1.setSelectedIndex(0);
+                cbUbi2.setSelectedIndex(0);
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Error al enlazar", "Error", 0);
+
+            }
+        
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -333,21 +410,29 @@ public class VistaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jPanel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseClicked
+
+        JButton boton = new JButton();
+        
         String nombre = JOptionPane.showInputDialog("Digite el nombre");
-       
         int prioridad = ingresarPrioridad("Digite la prioridad");
+        
+        boton.setBounds(evt.getX()-35, evt.getY()-20, 70, 40);
+        
+        boton.setText(nombre);
+        boton.setName(nombre);
+        boton.setBackground(Color.WHITE);
+        boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        jPanel2.add(boton);
         
         nodos.add(new Nodos(nombre, evt.getX(), evt.getY()+5, prioridad));
         
+        
+        
         cbUbi1.addItem(nombre);
         cbUbi2.addItem(nombre);
-        
-        tope++;
-
-        Pintar.pintarCirculo(jPanel2.getGraphics(), evt.getX(), evt.getY(), nombre);
 
     }//GEN-LAST:event_jPanel2MouseClicked
-
+    
     /**
      * @param args the command line arguments
      */
@@ -394,6 +479,16 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JTextArea jTextArea3;
+    private javax.swing.JTextArea jTextArea4;
+    private javax.swing.JTextArea jTextArea5;
     // End of variables declaration//GEN-END:variables
 }

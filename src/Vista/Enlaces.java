@@ -7,14 +7,13 @@ import javax.swing.JTable;
 public class Enlaces extends javax.swing.JDialog {
 
     DefaultTableModel modelo = new DefaultTableModel();
-    
-    
-    
+ 
     public Enlaces(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
         listarEnlaces();
+
     }
 
 
@@ -125,7 +124,6 @@ public class Enlaces extends javax.swing.JDialog {
         });
         
     } 
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegresar;
