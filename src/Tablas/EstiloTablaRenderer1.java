@@ -7,7 +7,7 @@ import java.awt.Font;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableCellRenderer;
 
-public class EstiloTablaRenderer extends DefaultTableCellRenderer {
+public class EstiloTablaRenderer1 extends DefaultTableCellRenderer {
 
     private Component componenete;
 
@@ -27,9 +27,6 @@ public class EstiloTablaRenderer extends DefaultTableCellRenderer {
         } else {
             componenete.setForeground(Color.BLACK);
             componenete.setBackground(new Color(240, 240, 240));
-        }
-        if(table.getValueAt(row, 4).toString().equals("NO DISPONIBLE")){
-            componenete.setBackground(new Color(255, 204, 204));
         }
         if (isSelected) {
             componenete.setForeground(Color.white);

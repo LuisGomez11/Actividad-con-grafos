@@ -53,6 +53,7 @@ public class Enlaces extends javax.swing.JDialog {
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jTable1.setModel(modelo);
+        jTable1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jTable1);
 
         btnRegresar.setText("REGRESAR");
@@ -149,16 +150,16 @@ public class Enlaces extends javax.swing.JDialog {
             datos[1] = enlace.getUbicacion2()+"";
             return enlace;
         }).map((enlace) -> {
-            datos[2] = enlace.getDistancia()+"";
+            datos[2] = enlace.getDistancia()+" mts";
             return enlace;
         }).map((enlace) -> {
-            datos[3] = enlace.getVelocidadMax()+"";
+            datos[3] = enlace.getVelocidadMax()+" Km/h";
             return enlace;            
         }).map((enlace) -> {
             datos[4] = enlace.getEstado()+"";
             return enlace;            
         }).map((enlace) -> {
-            datos[5] = enlace.getTiempoPare()+"";
+            datos[5] = enlace.getTiempoPare()+" seg";
             return enlace;            
         }).forEachOrdered((_item) -> {
             modelo.addRow(datos);

@@ -15,12 +15,12 @@ public class Pintar {
     public Pintar() {
     }
     
-    public static void pintarLinea(Graphics g, int x1,int y1,int x2,int y2,double tam){
+    public static void pintarLinea(Graphics g, int x1,int y1,int x2,int y2,String tam){
         int xAux = 0; int yAux = 0; 
         ((Graphics2D)g).setRenderingHint(RenderingHints.KEY_ANTIALIASING,  RenderingHints.VALUE_ANTIALIAS_ON);
         BasicStroke stroke = new BasicStroke(2);
         ((Graphics2D)g).setStroke(stroke);         
-        ((Graphics2D)g).drawLine(x1+10, y1+10, x2+10, y2+10);
+//        ((Graphics2D)g).drawLine(x1+10, y1+10, x2+10, y2+10);
         
         if(x1<=x2)
            xAux=((x2-x1)/2)+x1;       
@@ -33,7 +33,7 @@ public class Pintar {
         
         Font fuente=new Font("Monospaced",Font.PLAIN, 12);
         g.setFont(fuente);
-        ((Graphics2D)g).drawString(String.valueOf(tam), xAux, yAux);
+        ((Graphics2D)g).drawString(tam, xAux, yAux);
   }   
 
     public static void pintarCirculo(Graphics g,int x,int y,String n){

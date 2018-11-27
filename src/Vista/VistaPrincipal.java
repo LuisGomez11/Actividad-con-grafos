@@ -4,9 +4,7 @@ package Vista;
 import Controladores.ControlMatriz;
 import Modelos.Enlace;
 import Modelos.Nodos;
-import Modelos.Pintar;
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.HeadlessException;
 import java.util.ArrayList;
@@ -34,6 +32,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         VistaPrincipal.enlaces = enlaces;
     }
     
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     public  int ingresarPrioridad(String pregunta){        
         int prioridad;
         try{
@@ -102,6 +101,32 @@ public class VistaPrincipal extends javax.swing.JFrame {
         }
         return estado;
     }
+    public  String ingresarNombre(String pregunta){        
+        String nombre;
+        boolean c = false;
+        try{
+            nombre = JOptionPane.showInputDialog(""+pregunta);
+            if(nombre.isEmpty()){
+                JOptionPane.showMessageDialog(null,"Debe ingresar un nombre","Error",2);
+                nombre = ingresarNombre(pregunta);
+            }else {
+                for (Nodos nodo : nodos) {
+                    if(nombre.toUpperCase().equals(nodo.getNombre().toUpperCase())){
+                        c = true;
+                    }
+                }
+                if(c==true){
+                    JOptionPane.showMessageDialog(null,"Ubicacion ya creada, ingrese una diferente","Error",2);
+                    nombre = ingresarNombre(pregunta);
+                }
+            }
+        }catch(HeadlessException | NumberFormatException ex){
+            JOptionPane.showMessageDialog(null,"Debe ingresar un nombre aceptado..");
+            nombre = ingresarNombre(pregunta);
+        }
+        return nombre;
+    }
+    ///////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
     ControlMatriz cm = new ControlMatriz();
     
@@ -298,51 +323,56 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     pun2=true;
                 }
             }
-        
-            if(pun1==true && pun2==true){
-
-                double distancia = ingresarDistancia("Digite la distancia");
-                double velMax = ingresarVelocidadMax("Digite velocidad maxima");
-                String estado = ingresarEstado("Digite estado"+"\nDisponible o no disponible");
-                int tiempoPare = ingresarTiempoPare("Digite tiempo de pare");
-
-                int o = JOptionPane.YES_NO_OPTION;
-                int res = JOptionPane.showConfirmDialog(null, "Enlace doble sentido?", "Opcion", o);
+            
+            if(cm.getmCoeficiente(p1, p2)!=null){
                 
-                if(res==0){
-                    enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi1, ubi2));
-                    enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi2, ubi1));
-                    cm.setmCoeficiente(p1, p2,distancia +"");
-                    cm.setmCoeficiente(p2, p1, distancia+"");
-                } else {
-                    enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi1, ubi2));
-                    cm.setmCoeficiente(p1, p2,distancia +"");
-                }
+                JOptionPane.showMessageDialog(null, "Enlace ya creado","Error!",2);
                 
-                jPanel2.updateUI();
-
-                cbUbi1.setSelectedIndex(0);
-                cbUbi2.setSelectedIndex(0);
-                
-                salida = "";
-                for (int i = 0; i < tope; i++) {
-                    for (int j = 0; j < tope; j++) {
-                        if (j==i){
-                            salida += "0"+"\t";  
-                        }
-                        else if(cm.getmCoeficiente(i, j)==null){
-                            salida += "XX"+"\t";
-                        } else {
-                            salida+=cm.getmCoeficiente(i, j)+"\t";
-                        }
-                    }
-                    salida+="\n"+"\n";
-                } 
-
             } else {
+        
+                if(pun1==true && pun2==true){
 
-                JOptionPane.showMessageDialog(null, "Error al enlazar", "Error", 0);
+                    double distancia = ingresarDistancia("Digite la distancia (metros)");
+                    double velMax = ingresarVelocidadMax("Digite velocidad maxima (Km/h)");
+                    String estado = ingresarEstado("Digite estado"+"\nDisponible o no disponible");
+                    int tiempoPare = ingresarTiempoPare("Digite tiempo de pare (segundos)");
 
+                    int o = JOptionPane.YES_NO_OPTION;
+                    int res = JOptionPane.showConfirmDialog(null, "Enlace doble sentido?", "Opcion", o);
+
+                    if(res==0){
+                        enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi1, ubi2));
+                        enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi2, ubi1));
+                        cm.setmCoeficiente(p1, p2,distancia +"");
+                        cm.setmCoeficiente(p2, p1, distancia+"");
+                    } else {
+                        enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi1, ubi2));
+                        cm.setmCoeficiente(p1, p2,distancia +"");
+                    }
+
+                    cbUbi1.setSelectedIndex(0);
+                    cbUbi2.setSelectedIndex(0);
+
+                    salida = "";
+                    for (int i = 0; i < tope; i++) {
+                        for (int j = 0; j < tope; j++) {
+                            if (j==i){
+                                salida += "0"+"\t";  
+                            }
+                            else if(cm.getmCoeficiente(i, j)==null){
+                                salida += "XX"+"\t";
+                            } else {
+                                salida+=cm.getmCoeficiente(i, j)+"\t";
+                            }
+                        }
+                        salida+="\n"+"\n";
+                    } 
+
+                } else {
+
+                    JOptionPane.showMessageDialog(null, "Error al enlazar", "Error", 0);
+
+                }
             }
         
         }
@@ -361,7 +391,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
         JButton boton = new JButton();
         
-        String nombre = JOptionPane.showInputDialog("Digite el nombre");
+        String nombre = ingresarNombre("Digite el nombre");
         int prioridad = ingresarPrioridad("Digite la prioridad");
         
         boton.setBounds(evt.getX()-40, evt.getY()-20, 80, 40);

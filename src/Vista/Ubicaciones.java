@@ -3,7 +3,7 @@ package Vista;
 
 import Modelos.Nodos;
 import Tablas.EstiloTablaHeader;
-import Tablas.EstiloTablaRenderer;
+import Tablas.EstiloTablaRenderer1;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JTable;
 
@@ -18,7 +18,7 @@ public class Ubicaciones extends javax.swing.JDialog {
         listarUbicaciones();
         
         this.jTable1.getTableHeader().setDefaultRenderer(new EstiloTablaHeader());
-        this.jTable1.setDefaultRenderer(Object.class, new EstiloTablaRenderer());
+        this.jTable1.setDefaultRenderer(Object.class, new EstiloTablaRenderer1());
     }
 
     @SuppressWarnings("unchecked")
