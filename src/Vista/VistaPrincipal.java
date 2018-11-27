@@ -276,6 +276,12 @@ public class VistaPrincipal extends javax.swing.JFrame {
         String ubi1 = cbUbi1.getSelectedItem().toString();
         String ubi2 = cbUbi2.getSelectedItem().toString();
         
+        if (cbUbi1.getSelectedIndex()==0||cbUbi2.getSelectedIndex()==0){
+            
+            JOptionPane.showMessageDialog(null, "Debe seleccionar dos ubicaciones", "Advertencia", 2);
+            
+        } else
+        
         if(ubi1.equals(ubi2)){
             
             JOptionPane.showMessageDialog(null, "No puede enlazar la misma ubicacion", "Error", 0);
