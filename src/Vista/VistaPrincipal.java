@@ -109,25 +109,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         
-//        for (int i = 0; i < tope; i++) {
-//            for (int j = 0; j < tope; j++) {
-//                if(j==i){
-//                    cm.setmCoeficiente(i, j, "0");
-//                } else {
-//                    cm.setmCoeficiente(i, j, "1");
-//                }
-//            }
-//        }
+        for (int i = 0; i < tope; i++) {
+            for (int j = 0; j < tope; j++) {        
+                cm.setmCoeficiente(i, j, "0");
+            }
+        }
 
         cbUbi1.addItem("Seleccione...");
         cbUbi2.addItem("Seleccione...");
         
-
     }
     
     static int tope = 0;
-        
-    String matriz [][] = new String[tope][tope];
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -222,7 +215,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         .addComponent(cbUbi2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton4)
                         .addGap(29, 29, 29)
                         .addComponent(jButton3)
@@ -290,23 +283,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
         } else {
         
             for (int i = 0; i < nodos.size(); i++) {
-
                 if (nodos.get(i).getNombre().equals(ubi1)){
-
                     p1 = i;
-
                     pun1=true;
-
                 }
-
                 if (nodos.get(i).getNombre().equals(ubi2)){
-
                     p2 = i;
-
                     pun2=true;
-
                 }
-
             }
         
             if(pun1==true && pun2==true){
@@ -316,14 +300,35 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 String estado = ingresarEstado("Digite estado"+"\nDisponible o no disponible");
                 int tiempoPare = ingresarTiempoPare("Digite tiempo de pare");
 
-                enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi1, ubi2));
-
-                Pintar.pintarLinea(jPanel1.getGraphics(), nodos.get(p1).getX(), nodos.get(p1).getY(), nodos.get(p2).getX(), nodos.get(p2).getY(), distancia);
-
-                cm.setmCoeficiente(p1, p2, distancia+"");
+                int o = JOptionPane.YES_NO_OPTION;
+                int res = JOptionPane.showConfirmDialog(null, "Enlace doble sentido?", "Opcion", o);
+                
+                if(res==0){
+                    enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi1, ubi2));
+                    enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi2, ubi1));
+                    cm.setmCoeficiente(p1, p2,distancia +"");
+                    cm.setmCoeficiente(p2, p1, distancia+"");
+                } else {
+                    enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi1, ubi2));
+                    cm.setmCoeficiente(p1, p2,distancia +"");
+                }
+                
+                jPanel2.updateUI();
 
                 cbUbi1.setSelectedIndex(0);
                 cbUbi2.setSelectedIndex(0);
+                
+                salida = "";
+                for (int i = 0; i < tope; i++) {
+                    for (int j = 0; j < tope; j++) {
+                        if(cm.getmCoeficiente(i, j)==null){
+                            salida += "0"+"\t";
+                        } else {
+                            salida+=cm.getmCoeficiente(i, j)+"\t";
+                        }
+                    }
+                    salida+="\n"+"\n";
+                } 
 
             } else {
 
@@ -350,7 +355,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         String nombre = JOptionPane.showInputDialog("Digite el nombre");
         int prioridad = ingresarPrioridad("Digite la prioridad");
         
-        boton.setBounds(evt.getX()-35, evt.getY()-20, 80, 40);
+        boton.setBounds(evt.getX()-40, evt.getY()-20, 80, 40);
         
         boton.setText(nombre);
         boton.setName(nombre);
@@ -361,12 +366,27 @@ public class VistaPrincipal extends javax.swing.JFrame {
         
         nodos.add(new Nodos(nombre, evt.getX(), evt.getY()+5, prioridad));
         
+        tope++;
         
+        salida = "";
+        for (int i = 0; i < tope; i++) {
+            for (int j = 0; j < tope; j++) {
+                if(cm.getmCoeficiente(i, j)==null){
+                    salida += "0"+"\t";
+                } else {
+                    salida+=cm.getmCoeficiente(i, j)+"\t";
+                }
+            }
+            salida+="\n"+"\n";
+        }
         
         cbUbi1.addItem(nombre);
         cbUbi2.addItem(nombre);
 
     }//GEN-LAST:event_jPanel2MouseClicked
+
+    static String salida = "";
+
     
     /**
      * @param args the command line arguments

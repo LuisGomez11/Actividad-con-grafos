@@ -2,18 +2,20 @@
 package Vista;
 
 import Controladores.ControlMatriz;
-import Modelos.Enlace;
 
 public class Matriz extends javax.swing.JDialog {
     
     ControlMatriz cm = new ControlMatriz();
+    VistaPrincipal vp = new VistaPrincipal();
+    
+    int tope = VistaPrincipal.getNodos().size();
     
     public Matriz(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         setLocationRelativeTo(null);
-        
-         
+     
+        jTextArea1.append(VistaPrincipal.salida);
         
     }
     
@@ -98,50 +100,8 @@ public class Matriz extends javax.swing.JDialog {
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargarActionPerformed
-        
-        String salida = "";
-        
-        int tope = VistaPrincipal.getNodos().size();
-        
-        for (int i = 0; i < tope; i++) {
-            for (int j = 0; j < tope; j++) {
-                cm.setmCoeficiente(i, j, "0");
-            }
-        } 
-        
-        int p1=0, p2=0;
-        
-        int tamEnla = VistaPrincipal.getEnlaces().size();
-        
-        if(tamEnla>0){
-            
-            for (Enlace enlace : VistaPrincipal.getEnlaces()) {
-                
-                for (int i = 0; i < VistaPrincipal.getNodos().size(); i++) {
-                    
-                    if(enlace.getUnicacion1().equals(VistaPrincipal.getNodos().get(i).getNombre())){
-                        p1=i;
-                    }
-                    if(enlace.getUbicacion2().equals(VistaPrincipal.getNodos().get(i).getNombre())){
-                        p2=i;
-                    }
-                    
-                }
-                
-                cm.setmCoeficiente(p1, p2, "1");
-                
-            }
-            
-        }
-
-        for (int i = 0; i < tope; i++) {
-            for (int j = 0; j < tope; j++) {
-                salida += cm.getmCoeficiente(i, j)+"\t";
-            }
-            salida+="\n"+"\n";
-        } 
-        
-        jTextArea1.append(salida);
+    
+        jTextArea1.append(VistaPrincipal.salida);
         
     }//GEN-LAST:event_btnCargarActionPerformed
 
