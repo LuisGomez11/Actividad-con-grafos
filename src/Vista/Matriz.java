@@ -60,7 +60,7 @@ public class Matriz extends javax.swing.JDialog {
                 btnRegresarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 360, -1, -1));
+        jPanel1.add(btnRegresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, -1, -1));
 
         UbiX.setEditable(false);
         UbiX.setColumns(1);

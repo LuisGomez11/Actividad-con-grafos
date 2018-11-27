@@ -321,8 +321,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
                 salida = "";
                 for (int i = 0; i < tope; i++) {
                     for (int j = 0; j < tope; j++) {
-                        if(cm.getmCoeficiente(i, j)==null){
-                            salida += "0"+"\t";
+                        if (j==i){
+                            salida += "0"+"\t";  
+                        }
+                        else if(cm.getmCoeficiente(i, j)==null){
+                            salida += "XX"+"\t";
                         } else {
                             salida+=cm.getmCoeficiente(i, j)+"\t";
                         }
