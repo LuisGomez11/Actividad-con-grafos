@@ -44,6 +44,7 @@ public class Ubicaciones extends javax.swing.JDialog {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jTable1.setModel(modelo);
         jScrollPane1.setViewportView(jTable1);

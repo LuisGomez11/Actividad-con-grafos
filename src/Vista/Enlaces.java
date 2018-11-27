@@ -50,6 +50,7 @@ public class Enlaces extends javax.swing.JDialog {
         setUndecorated(true);
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jTable1.setModel(modelo);
         jScrollPane1.setViewportView(jTable1);
@@ -82,7 +83,7 @@ public class Enlaces extends javax.swing.JDialog {
                         .addComponent(jButton1)
                         .addGap(29, 29, 29)
                         .addComponent(btnRegresar))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 616, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 614, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
