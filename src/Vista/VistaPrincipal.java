@@ -7,6 +7,8 @@ import Modelos.Nodos;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.HeadlessException;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -145,7 +147,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         
     }
     
-    static int tope = 0;
+    public static int tope = 0;
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -162,6 +164,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         cbUbi1 = new javax.swing.JComboBox<>();
         cbUbi2 = new javax.swing.JComboBox<>();
+        jButton5 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -215,12 +218,19 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 900, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 414, Short.MAX_VALUE)
         );
+
+        jButton5.setText("RECORRER");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -240,9 +250,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
                         .addComponent(cbUbi2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addComponent(jButton5)
+                        .addGap(17, 17, 17)
                         .addComponent(jButton4)
-                        .addGap(29, 29, 29)
+                        .addGap(18, 18, 18)
                         .addComponent(jButton3)
                         .addGap(26, 26, 26)
                         .addComponent(jButton2))
@@ -265,7 +277,8 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addComponent(jButton3)
                     .addComponent(jButton4)
                     .addComponent(cbUbi1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbUbi2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbUbi2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton5))
                 .addContainerGap())
         );
 
@@ -343,11 +356,11 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     if(res==0){
                         enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi1, ubi2));
                         enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi2, ubi1));
-                        cm.setmCoeficiente(p1, p2,distancia +"");
-                        cm.setmCoeficiente(p2, p1, distancia+"");
+                        cm.setmCoeficiente(p1, p2,distancia+"");
+                        cm.setmCoeficiente(p2, p1,distancia+"");
                     } else {
                         enlaces.add(new Enlace(distancia, velMax, estado, tiempoPare, ubi1, ubi2));
-                        cm.setmCoeficiente(p1, p2,distancia +"");
+                        cm.setmCoeficiente(p1, p2,distancia+"");
                     }
 
                     cbUbi1.setSelectedIndex(0);
@@ -400,6 +413,34 @@ public class VistaPrincipal extends javax.swing.JFrame {
         boton.setName(nombre);
         boton.setBackground(Color.WHITE);
         boton.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        boton.addMouseListener(new MouseListener() {
+            
+            @Override
+            public void mouseClicked(MouseEvent me) {
+
+            }
+
+            @Override
+            public void mousePressed(MouseEvent me) {
+                
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent me) {
+                
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent me) {
+                
+            }
+
+            @Override
+            public void mouseExited(MouseEvent me) {
+                
+            }
+        });
+        
         jPanel2.add(boton);
         jPanel2.updateUI();
         
@@ -438,8 +479,41 @@ public class VistaPrincipal extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jPanel2MouseClicked
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        String inicio = JOptionPane.showInputDialog("Digite inicio");
+        String ubiFinal = JOptionPane.showInputDialog("Digite final");
+        recorrer(inicio, ubiFinal);
+        
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     static String salida = "";
 
+    public void recorrer(String inicio, String ubiFinal){
+        
+        String actualUbi = inicio;
+        String siguienteUbi = "";
+        String recorrido = actualUbi;
+        boolean estado=false;
+        double distancia = 0.0;
+        
+        for (int i = 0; i < enlaces.size(); i++) {
+            
+            if(enlaces.get(i).getUnicacion1().equals(actualUbi)){
+                actualUbi = enlaces.get(i).getUnicacion1();
+                siguienteUbi = enlaces.get(i).getUbicacion2();
+                recorrido += " "+siguienteUbi;
+                actualUbi = siguienteUbi;
+                if(!actualUbi.equals(ubiFinal)){
+                    recorrer(actualUbi, ubiFinal);
+                }
+            }
+            
+        }
+        
+        System.out.println(recorrido);
+        
+    }
+    
     
     /**
      * @param args the command line arguments
@@ -483,6 +557,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
