@@ -12,6 +12,7 @@ import java.awt.event.MouseListener;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import jdk.nashorn.internal.ir.BreakNode;
 
 public class VistaPrincipal extends javax.swing.JFrame {
 
@@ -484,33 +485,47 @@ public class VistaPrincipal extends javax.swing.JFrame {
         String ubiFinal = JOptionPane.showInputDialog("Digite final");
         recorrer(inicio, ubiFinal);
         
+        recorrido="";
+        
+        
     }//GEN-LAST:event_jButton5ActionPerformed
 
     static String salida = "";
+    
+    String recorrido ="";
+    
+    ArrayList<String> recorridos = new ArrayList<>();
 
-    public void recorrer(String inicio, String ubiFinal){
+    public void recorrer (String inicio, String posFinal){
         
-        String actualUbi = inicio;
-        String siguienteUbi = "";
-        String recorrido = actualUbi;
-        boolean estado=false;
-        double distancia = 0.0;
+        int indexPosActual = 0;
+        recorrido += inicio+" ";
+        String posActual = inicio;
         
-        for (int i = 0; i < enlaces.size(); i++) {
-            
-            if(enlaces.get(i).getUnicacion1().equals(actualUbi)){
-                actualUbi = enlaces.get(i).getUnicacion1();
-                siguienteUbi = enlaces.get(i).getUbicacion2();
-                recorrido += " "+siguienteUbi;
-                actualUbi = siguienteUbi;
-                if(!actualUbi.equals(ubiFinal)){
-                    recorrer(actualUbi, ubiFinal);
-                }
+        for (int i = 0; i < nodos.size(); i++) {
+            if(posActual.equals(nodos.get(i).getNombre())){
+                indexPosActual = i;
             }
-            
         }
         
-        System.out.println(recorrido);
+        for (int j = 0; j < nodos.size(); j++) {
+            if(j!=indexPosActual){
+  
+                if(cm.getmCoeficiente(indexPosActual, j)!=null){
+//                    recorrido+=" "+nodos.get(j).getNombre();
+                    posActual = nodos.get(j).getNombre();
+                    break;
+                }
+ 
+            }
+        }
+
+        if(posActual.equals(posFinal)){
+            recorrido += posFinal;
+            System.out.println(recorrido);
+        } else {
+            recorrer(posActual, posFinal);
+        }
         
     }
     
